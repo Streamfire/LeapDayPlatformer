@@ -1,2 +1,0 @@
-# LeapDayPlatformer
-Hallo Deppen
