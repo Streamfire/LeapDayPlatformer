@@ -1,3 +1,0 @@
-# LeapDayPlatformer
-Hallo Deppen
-Hurensohn
