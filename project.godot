@@ -18,6 +18,32 @@ _global_script_class_icons={
 config/name="Leap Day Platformer"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://internal/scripts/Global.gd"
+SoundControler="*res://internal/scripts/SoundControler.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/test_width=1024
+window/size/test_height=600
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[layer_names]
+
+2d_physics/layer_1="Terrain_static"
+2d_physics/layer_2="Spieler_Body"
+2d_physics/layer_3="Spieler_Hit"
+2d_physics/layer_4="Gegner_Body"
+2d_physics/layer_5="Gegner_Hit"
+2d_physics/layer_6="Terrain_Body"
+2d_physics/layer_7="Terrain_Hit"
+
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
