@@ -1,9 +1,94 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/background/ebene4.png" type="Texture" id=1]
 [ext_resource path="res://assets/background/ebene1.png" type="Texture" id=2]
 [ext_resource path="res://assets/background/ebene3.png" type="Texture" id=3]
 [ext_resource path="res://assets/background/ebene2.png" type="Texture" id=4]
+[ext_resource path="res://assets/tiles/sand.png" type="Texture" id=5]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 25, 0, 25, 25, 0, 25 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 0, 0, 25, 0, 25, 25, 0, 25 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 0, 0, 25, 25, 25, 25, 0, 25 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 0, 0, 25, 25, 25, 25, 0, 25 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 0, 0, 25, 0, 25, 25, 0, 25 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 0, 0, 25, 0, 25, 25, 0, 25 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 0, 0, 25, 0, 25, 25, 0, 25 )
+
+[sub_resource type="TileSet" id=8]
+0/name = "sand.png 0"
+0/texture = ExtResource( 5 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 100, 50 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 320, Vector2( 0, 1 ), 325, Vector2( 1, 0 ), 320, Vector2( 1, 1 ), 325, Vector2( 2, 0 ), 64, Vector2( 2, 1 ), 325, Vector2( 3, 1 ), 64 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 25, 25 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
 
 [node name="Level" type="Node2D"]
 
@@ -38,3 +123,9 @@ motion_scale = Vector2( 2, 1 )
 [node name="ebene1" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 2 )
 centered = false
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 8 )
+cell_size = Vector2( 25, 25 )
+format = 1
+tile_data = PoolIntArray( 2228260, 0, 0, 2293796, 0, 0, 2359332, 0, 0, 2424868, 0, 0, 2490368, 0, 0, 2490369, 0, 0, 2490370, 0, 1, 2490371, 0, 1, 2490372, 0, 0, 2490373, 0, 2, 2490396, 0, 0, 2490397, 0, 0, 2490398, 0, 0, 2490399, 0, 0, 2490400, 0, 0, 2490404, 0, 0, 2555904, 0, 0, 2555905, 0, 65538, 2555906, 0, 65538, 2555907, 0, 65538, 2555908, 0, 65536, 2555909, 0, 0, 2555910, 0, 0, 2555911, 0, 65539, 2555917, 536870912, 0, 2555918, 536870912, 0, 2555919, 536870912, 0, 2555920, 536870912, 0, 2555921, 536870912, 0, 2555940, 0, 0, 2621440, 0, 0, 2621441, 0, 65538, 2621442, 0, 65537, 2621443, 0, 65538, 2621444, 0, 65538, 2621445, 0, 65538, 2621446, 0, 65538, 2621447, 0, 0, 2621448, 0, 65539, 2621461, 536870912, 0, 2621462, 0, 1, 2621463, 0, 1, 2621464, 0, 1, 2621465, 0, 2, 2621476, 0, 0, 2686976, 0, 0, 2686977, 0, 65537, 2686978, 0, 65538, 2686979, 0, 65538, 2686980, 0, 65537, 2686981, 0, 65538, 2686982, 0, 65536, 2686983, 0, 65538, 2686984, 0, 0, 2686985, 0, 2, 2686997, 0, 0, 2686998, 0, 65538, 2686999, 0, 65538, 2687000, 0, 65538, 2687001, 0, 0, 2687002, 0, 65539, 2687012, 0, 0, 2752512, 0, 0, 2752513, 0, 0, 2752514, 0, 0, 2752515, 0, 0, 2752516, 0, 0, 2752517, 0, 0, 2752518, 0, 0, 2752519, 0, 0, 2752520, 0, 0, 2752521, 0, 0, 2752522, 0, 0, 2752523, 0, 0, 2752524, 0, 0, 2752525, 0, 0, 2752526, 0, 0, 2752527, 0, 0, 2752528, 0, 0, 2752529, 0, 0, 2752530, 0, 0, 2752531, 0, 0, 2752532, 0, 0, 2752533, 0, 0, 2752534, 0, 0, 2752535, 0, 0, 2752536, 0, 0, 2752537, 0, 0, 2752538, 0, 0, 2752539, 0, 0, 2752540, 0, 0, 2752541, 0, 0, 2752542, 0, 0, 2752543, 0, 0, 2752544, 0, 0, 2752545, 0, 0, 2752546, 0, 0, 2752547, 0, 0, 2752548, 0, 0 )
