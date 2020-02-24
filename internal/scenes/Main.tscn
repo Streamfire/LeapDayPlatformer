@@ -6,8 +6,11 @@
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 758.045, 917.578 )
+moveSpeed = 120.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]

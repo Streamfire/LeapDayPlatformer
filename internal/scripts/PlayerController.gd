@@ -8,6 +8,15 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+ #Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var movement = Vector2(0,0)
+	
+	if(Input.is_action_pressed("Move_Left")):
+		movement=Vector2(-1,0)
+	
+	if(Input.is_action_pressed("Move_Right")):
+		movement=Vector2(1,0)
+	
+	self.translate(movement.normalized()*delta*moveSpeed)
+	pass
