@@ -1,15 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://internal/scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
+radius = 15.4285
+height = 21.3391
+
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 15.1663
 height = 25.1559
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 1 )
 gravity = 20.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2( 0, -0.971937 )
+collision_layer = 4
+collision_mask = 80
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.971937 )
+shape = SubResource( 2 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
 
@@ -17,7 +34,5 @@ gravity = 20.0
 position = Vector2( 0.0809937, 0.222081 )
 scale = Vector2( 0.492715, 0.849276 )
 texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.971937 )
-shape = SubResource( 1 )
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
