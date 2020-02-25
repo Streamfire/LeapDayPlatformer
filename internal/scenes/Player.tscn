@@ -9,12 +9,13 @@ height = 25.1559
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+gravity = 20.0
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
 
 [node name="icon" type="Sprite" parent="."]
-position = Vector2( 0, -0.142397 )
-scale = Vector2( 0.492715, 0.835355 )
+position = Vector2( 0.0809937, 0.222081 )
+scale = Vector2( 0.492715, 0.849276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

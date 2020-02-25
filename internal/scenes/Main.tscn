@@ -1,19 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://internal/scenes/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://internal/scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://internal/scripts/PlayerController.gd" type="Script" id=3]
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" type="RigidBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 47.7776, 920.285 )
-script = ExtResource( 3 )
-moveForce = 5000.0
-maxSpeed = 500.0
-maxFallSpeed = 4800.0
-jumpForce = 2000.0
-gravity = 9800.0
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 113.782, 897.129 )
+maxMoveSpeed = 5000.0
+jumpForce = 12000.0
+maxFallSpeed = 8500.0
+gravity = 4000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
