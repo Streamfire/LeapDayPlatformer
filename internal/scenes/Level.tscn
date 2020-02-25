@@ -94,9 +94,10 @@ points = PoolVector2Array( 0, 0, 25, 0, 25, 25, 0, 25 )
 [node name="Level" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-offset = Vector2( 0, 450 )
+offset = Vector2( 0, 500 )
 scale = Vector2( 0.3, 0.3 )
-transform = Transform2D( 0.3, 0, 0, 0.3, 0, 450 )
+transform = Transform2D( 0.3, 0, 0, 0.3, 0, 500 )
+scroll_limit_end = Vector2( 3440, 0 )
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
 
