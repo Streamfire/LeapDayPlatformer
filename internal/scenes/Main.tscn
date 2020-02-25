@@ -10,7 +10,8 @@ position = Vector2( 113.782, 897.129 )
 MoveSpeed = 15000.0
 Acceleration = 0.1
 Deacceleration = 0.5
-gravity = 980.0
+jumpForce = 125000.0
+gravity = 20000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

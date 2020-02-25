@@ -5,8 +5,8 @@ export(float) var MoveSpeed = 50.0
 export(float) var Acceleration = 0.2
 export(float) var Deacceleration = 0.7
 #jumping
-export(float) var jumpForce=250.0
-export(float) var gravity=200.0
+export(float) var jumpForce=25000.0
+export(float) var gravity=2000.0
 
 
 var inputMotion = Vector2()
@@ -26,6 +26,10 @@ func _process(_delta):
 		inputMotion.x= 1
 	else:
 		inputMotion.x=0
+	
+	if Input.is_action_just_pressed("Move_Jump"):
+		velocity.y = -jumpForce
+	
 
 
 func _physics_process(delta):
@@ -33,6 +37,11 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, inputMotion.x * MoveSpeed, Acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0, Deacceleration)
-		
+	
+	
+	velocity.y +=gravity
+	if velocity.y > gravity:
+		velocity.y= gravity
+	
 	move_and_slide(velocity*delta)
 	pass
