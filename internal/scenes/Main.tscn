@@ -17,6 +17,12 @@ gravity = 20000.0
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 zoom = Vector2( 0.25, 0.25 )
+limit_left = 0
+limit_bottom = 1075
+drag_margin_h_enabled = true
+drag_margin_left = 0.3
+drag_margin_right = 0.0
+editor_draw_drag_margin = true
 
 [node name="Level" parent="." instance=ExtResource( 1 )]
 
