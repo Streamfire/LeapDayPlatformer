@@ -21,8 +21,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://internal/scripts/Global.gd"
 SoundControler="*res://internal/scripts/SoundControler.gd"
+Global="*res://internal/scripts/Global.gd"
 
 [display]
 
