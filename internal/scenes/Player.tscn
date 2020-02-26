@@ -4,11 +4,11 @@
 [ext_resource path="res://assets/pingu/run.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 3.85931
+radius = 6.83425
 height = 21.3391
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 4.85095
+radius = 7.38516
 height = 19.5761
 
 [sub_resource type="Animation" id=3]
@@ -51,20 +51,21 @@ collision_layer = 4
 collision_mask = 80
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( -1.10184, 0.550915 )
 shape = SubResource( 1 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2( -0.110184, 0.35026 )
+position = Vector2( -1.10183, 0.240076 )
 shape = SubResource( 2 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
+playback_speed = 5.0
 anims/Walk = SubResource( 3 )
 
 [node name="walk" type="Sprite" parent="."]
 position = Vector2( 0.0809937, 0.222081 )
-scale = Vector2( 0.492715, 0.849276 )
 texture = ExtResource( 2 )
 hframes = 4
-frame = 2
+frame = 1
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
