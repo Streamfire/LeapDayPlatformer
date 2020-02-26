@@ -14,7 +14,8 @@ const UP_VECTOR = Vector2(0,-1)
 var inputMotion = Vector2()
 var velocity = Vector2()
 
-
+onready var Animator = $PlayerAnimator
+onready var walkSprite = $walk
 
 func _ready():
 	Global.Playernode = self
@@ -35,7 +36,19 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Move_Jump") and is_on_floor():
 		velocity.y = -jumpForce
 	
+	Animate()
 
+func Animate():
+	if is_on_floor():
+		if inputMotion.x >0:
+			Animator.play("Walk")
+			walkSprite.flip_h = false
+		elif inputMotion.x <0:
+			Animator.play("Walk")
+			walkSprite.flip_h = true
+		else:
+			Animator.seek(0)
+			Animator.stop()
 
 func _physics_process(delta):
 	

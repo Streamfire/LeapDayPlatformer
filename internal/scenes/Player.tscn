@@ -1,15 +1,44 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://internal/scripts/PlayerController.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/pingu/run.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 15.4285
+radius = 3.85931
 height = 21.3391
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 15.1663
-height = 25.1559
+radius = 4.85095
+height = 19.5761
+
+[sub_resource type="Animation" id=3]
+resource_name = "Walk"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("walk:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("walk:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -25,14 +54,17 @@ collision_mask = 80
 shape = SubResource( 1 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.971937 )
+position = Vector2( -0.110184, 0.35026 )
 shape = SubResource( 2 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
+anims/Walk = SubResource( 3 )
 
-[node name="icon" type="Sprite" parent="."]
+[node name="walk" type="Sprite" parent="."]
 position = Vector2( 0.0809937, 0.222081 )
 scale = Vector2( 0.492715, 0.849276 )
 texture = ExtResource( 2 )
+hframes = 4
+frame = 2
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
