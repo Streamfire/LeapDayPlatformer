@@ -6,7 +6,10 @@ export(float) var Acceleration = 0.2
 export(float) var Deacceleration = 0.7
 #jumping
 export(float) var jumpForce=2.0
+export(int) var jumpCount=2.0
 export(float) var gravity=2.0
+export(float) var glidingTime=5.0
+export(float) var glidingModifier=1.5
 
 const UP_VECTOR = Vector2(0,-1)
 
@@ -17,11 +20,14 @@ var velocity = Vector2()
 onready var Animator = $PlayerAnimator
 onready var walkSprite = $walk
 
+var currentGlideTime=0.0
+var currentJumpCount=0
+
 func _ready():
 	Global.Playernode = self
 
 
-func _process(_delta):
+func _process(delta):
 	#walking
 	inputMotion.x = 0
 	if Input.is_action_pressed("Move_Left"):
@@ -31,10 +37,16 @@ func _process(_delta):
 	
 	if is_on_ceiling() or is_on_floor():
 		velocity.y = 0
-	velocity.y += gravity
 	
-	if Input.is_action_just_pressed("Move_Jump") and is_on_floor():
+	if Input.is_action_pressed("Move_Jump") and currentGlideTime<glidingTime:
+		velocity.y += (gravity/glidingModifier)
+		currentGlideTime+=delta
+	else:
+		velocity.y += gravity
+	
+	if Input.is_action_just_pressed("Move_Jump") and currentJumpCount<jumpCount:
 		velocity.y = -jumpForce
+		currentJumpCount+=1
 	
 	Animate()
 
@@ -58,6 +70,9 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, 0, Deacceleration)
 	
 	move_and_slide(velocity*delta, UP_VECTOR)
+	if is_on_floor():
+		currentGlideTime=0.0
+		currentJumpCount=0
 	pass
 
 
