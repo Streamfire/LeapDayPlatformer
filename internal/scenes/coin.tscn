@@ -1,23 +1,48 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/tiles/spikes.png" type="Texture" id=1]
+[ext_resource path="res://assets/tiles/coins/coin.png" type="Texture" id=1]
 [ext_resource path="res://internal/scripts/coin.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 12.5371
 height = 1.01561
 
-[node name="StaticBody2D" type="Area2D"]
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 35, 119 ]
+}
+
+[node name="Coin" type="Area2D"]
 collision_layer = 0
 collision_mask = 6
 script = ExtResource( 2 )
 
-[node name="spikes" type="Sprite" parent="."]
-position = Vector2( 0.119076, -0.119077 )
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -12.3277, -12.6427 )
+scale = Vector2( 0.996099, 1.00351 )
 texture = ExtResource( 1 )
+centered = false
+hframes = 120
+frame = 67
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.404617, 0.71446 )
+position = Vector2( 0.0478671, 0.0357262 )
 shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.1
+anims/Idle = SubResource( 2 )
 [connection signal="area_entered" from="." to="." method="_on_StaticBody2D_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_StaticBody2D_area_entered"]
