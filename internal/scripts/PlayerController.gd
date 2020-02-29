@@ -5,6 +5,7 @@ onready var groundRay = get_node("RayCast2D")
 export(float) var MoveSpeed = 50.0
 export(float) var SlideSpeed = 100.0
 export(float) var SlideAcceleration = 0.1
+export(float) var SlideDeacceleration = 0.06
 export(float) var Acceleration = 0.2
 export(float) var Deacceleration = 0.7
 #jumping
@@ -19,6 +20,7 @@ const UP_VECTOR = Vector2(0,-1)
 var snap = 3
 var stoponSlope = 25
 var slideYeetorNeet = false
+var didIjustslide = false
 var inputMotion = Vector2()
 var velocity = Vector2()
 
@@ -63,12 +65,16 @@ func _process(delta):
 			and groundRay.get_collision_normal() != UP_VECTOR \
 			and is_on_floor():
 				slideYeetorNeet = true
+				didIjustslide = true
 				stoponSlope = 0
 				snap = 15
 		else:
 			slideYeetorNeet = false
 			stoponSlope = 25
 			snap = 3
+			
+		if Input.is_action_just_released("Move_Slide"):
+			didIjustslide = false
 	
 		groundRay.force_raycast_update()
 		#print(groundRay.get_collision_normal())
@@ -116,12 +122,14 @@ func _physics_process(delta):
 			elif groundRay.get_collision_normal().x < 0 and slideYeetorNeet:
 				velocity.x = lerp(velocity.x, - SlideSpeed, SlideAcceleration)
 		elif inputMotion.x == 0 and is_on_floor():
-			if groundRay.get_collision_normal() == UP_VECTOR or !slideYeetorNeet:
+			if (groundRay.get_collision_normal() == UP_VECTOR or !slideYeetorNeet) and !didIjustslide:
 				velocity.x = lerp(velocity.x, 0, Deacceleration)
 			elif groundRay.get_collision_normal().x > 0 and slideYeetorNeet:
 				velocity.x = lerp(velocity.x, SlideSpeed, SlideAcceleration)
 			elif groundRay.get_collision_normal().x < 0 and slideYeetorNeet:
 				velocity.x = lerp(velocity.x, - SlideSpeed, SlideAcceleration)
+			elif didIjustslide:
+				velocity.x = lerp(velocity.x, 0, SlideDeacceleration)
 		
 		if groundRay.get_collision_normal() != UP_VECTOR:
 			move_and_slide_with_snap(velocity*delta, Vector2(0,snap), UP_VECTOR, false, 4, rad2deg(90))
