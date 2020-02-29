@@ -10,6 +10,11 @@ extends Node2D
 func _ready():
 	Global.running=true
 	Global.Time=0.0
+	
+	if(Global.Checkpoint!= Vector2()):
+		$Player.global_position=Vector2(Global.Checkpoint.x,Global.Checkpoint.y-20)
+#		$Player/Camera2D.position=$Player.position
+#		$Player/RayCast2D.position=$Player.position
 	pass # Replace with function body.
 
 

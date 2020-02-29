@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tiles/checkpoint.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+
+
+
+func _player_hit(area):
+	Global.Checkpoint=self.global_position
+	pass # Replace with function body.
+"
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 12.5371
+height = 1.01561
+
+[node name="StaticBody2D" type="Area2D"]
+collision_layer = 64
+collision_mask = 4
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 2 )
+
+[node name="checkpoint" type="Sprite" parent="."]
+position = Vector2( 2, 0 )
+texture = ExtResource( 1 )
+[connection signal="area_entered" from="." to="." method="_player_hit"]
+[connection signal="body_entered" from="." to="." method="_player_hit"]
