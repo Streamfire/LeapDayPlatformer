@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -8,10 +8,11 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.running=true
+	Global.Time=0.0
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	$Scorelabel.text = str("Score: ",Global.Score,"\nTime: ",stepify(Global.Time,0.01))
-	pass
+#func _process(delta):
+#	pass
