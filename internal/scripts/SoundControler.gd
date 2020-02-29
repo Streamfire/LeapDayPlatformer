@@ -10,6 +10,8 @@ func _ready() -> void:
 	
 	music = AudioStreamPlayer.new()
 	music.bus = "BGM"
+	music.volume_db=-12
+	print(music.volume_db)
 	music.connect("finished",self,"music_finished")
 	add_child(music)
 	
