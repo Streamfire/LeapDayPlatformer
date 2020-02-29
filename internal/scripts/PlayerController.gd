@@ -16,6 +16,7 @@ export(float) var glidingModifier=1.5
 
 const UP_VECTOR = Vector2(0,-1)
 
+var snap = 3
 var stoponSlope = 25
 var slideYeetorNeet = false
 var inputMotion = Vector2()
@@ -35,10 +36,15 @@ func _ready():
 func _process(delta):
 	if alive :
 		inputMotion.x = 0
-		if Input.is_action_pressed("Move_Left"):
-			inputMotion.x= -1
-		elif Input.is_action_pressed("Move_Right"):
-			inputMotion.x= 1
+		if (Input.is_action_pressed("Move_Left") \
+		and !Input.is_action_pressed("Move_Slide")) \
+		or (Input.is_action_pressed("Move_Left") and !Input.is_action_pressed("Move_Right") and !is_on_floor()):
+				inputMotion.x= -1
+				
+		if (Input.is_action_pressed("Move_Right") \
+		and !Input.is_action_pressed("Move_Slide")) \
+		or (Input.is_action_pressed("Move_Right") and !Input.is_action_pressed("Move_Left") and !is_on_floor()):
+				inputMotion.x= 1
 	
 		if is_on_ceiling() or is_on_floor():
 			velocity.y = 0
@@ -58,9 +64,11 @@ func _process(delta):
 			and is_on_floor():
 				slideYeetorNeet = true
 				stoponSlope = 0
+				snap = 15
 		else:
 			slideYeetorNeet = false
 			stoponSlope = 25
+			snap = 3
 	
 		groundRay.force_raycast_update()
 		#print(groundRay.get_collision_normal())
@@ -90,7 +98,12 @@ func Animate():
 func _physics_process(delta):
 	if(alive):
 		if inputMotion.x != 0:
-			velocity.x = lerp(velocity.x, inputMotion.x * MoveSpeed, Acceleration)
+			if groundRay.get_collision_normal() == UP_VECTOR:
+				velocity.x = lerp(velocity.x, inputMotion.x * MoveSpeed, Acceleration)
+			elif groundRay.get_collision_normal().x > 0 and slideYeetorNeet:
+				velocity.x = lerp(velocity.x, SlideSpeed, SlideAcceleration)
+			elif groundRay.get_collision_normal().x < 0 and slideYeetorNeet:
+				velocity.x = lerp(velocity.x, - SlideSpeed, SlideAcceleration)
 		elif inputMotion.x == 0 and is_on_floor():
 			if groundRay.get_collision_normal() == UP_VECTOR or !slideYeetorNeet:
 				velocity.x = lerp(velocity.x, 0, Deacceleration)
@@ -100,7 +113,7 @@ func _physics_process(delta):
 				velocity.x = lerp(velocity.x, - SlideSpeed, SlideAcceleration)
 		
 		if groundRay.get_collision_normal() != UP_VECTOR:
-			move_and_slide_with_snap(velocity*delta, Vector2(0,3), UP_VECTOR, false, 4, rad2deg(90))
+			move_and_slide_with_snap(velocity*delta, Vector2(0,snap), UP_VECTOR, false, 4, rad2deg(90))
 		else:
 			move_and_slide(velocity*delta, UP_VECTOR, stoponSlope)
 		
