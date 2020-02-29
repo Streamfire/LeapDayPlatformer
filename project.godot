@@ -93,4 +93,5 @@ Move_Slide={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.654902, 0.576471, 0.494118, 1 )
 environment/default_environment="res://default_env.tres"
