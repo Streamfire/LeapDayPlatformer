@@ -10,6 +10,7 @@
 position = Vector2( 66.1037, 842.998 )
 collision/safe_margin = 0.01
 MoveSpeed = 12500.0
+SlideSpeed = 25000.0
 Acceleration = 0.1
 Deacceleration = 0.2
 jumpForce = 20000.0
@@ -28,7 +29,7 @@ editor_draw_drag_margin = true
 
 [node name="RayCast2D" type="RayCast2D" parent="Player"]
 enabled = true
-cast_to = Vector2( 0, 25 )
+cast_to = Vector2( 0, 30 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1, 0 )
