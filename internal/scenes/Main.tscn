@@ -23,7 +23,7 @@ glidingModifier = 0.075
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
-zoom = Vector2( 0.25, 0.25 )
+zoom = Vector2( 0.3, 0.3 )
 limit_left = 0
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
