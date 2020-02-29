@@ -32,40 +32,40 @@ func _ready():
 
 
 func _process(delta):
-	#walking
-	inputMotion.x = 0
-	if Input.is_action_pressed("Move_Left"):
-		inputMotion.x= -1
-	elif Input.is_action_pressed("Move_Right"):
-		inputMotion.x= 1
-	
-	if is_on_ceiling() or is_on_floor():
-		velocity.y = 0
-	
-	if Input.is_action_pressed("Move_Jump") and currentGlideTime<glidingTime:
-		velocity.y += (gravity/glidingModifier)
-		currentGlideTime+=delta
-	else:
-		velocity.y += gravity
-	
-	if Input.is_action_just_pressed("Move_Jump") and currentJumpCount<jumpCount:
-		velocity.y = -jumpForce
-		currentJumpCount+=1
-	
-	if Input.is_action_pressed("Move_Slide") \
-		and !Input.is_action_pressed("Move_Left") \
-		and !Input.is_action_pressed("Move_Right") \
-		and !Input.is_action_pressed("Move_Jump") and is_on_floor():
-			slideYeetorNeet = true
-			stoponSlope = 0
-	else:
-		slideYeetorNeet = false
-		stoponSlope = 25
-	
-	groundRay.force_raycast_update()
-	print(groundRay.get_collision_normal())
-	
-	Animate()
+	if alive :
+		inputMotion.x = 0
+		if Input.is_action_pressed("Move_Left"):
+			inputMotion.x= -1
+		elif Input.is_action_pressed("Move_Right"):
+			inputMotion.x= 1
+		
+		if is_on_ceiling() or is_on_floor():
+			velocity.y = 0
+		
+		if Input.is_action_pressed("Move_Jump") and currentGlideTime<glidingTime:
+			velocity.y += (gravity/glidingModifier)
+			currentGlideTime+=delta
+		else:
+			velocity.y += gravity
+		
+		if Input.is_action_just_pressed("Move_Jump") and currentJumpCount<jumpCount:
+			velocity.y = -jumpForce
+			currentJumpCount+=1
+		
+		if Input.is_action_pressed("Move_Slide") \
+			and !Input.is_action_pressed("Move_Left") \
+			and !Input.is_action_pressed("Move_Right") \
+			and !Input.is_action_pressed("Move_Jump") and is_on_floor():
+				slideYeetorNeet = true
+				stoponSlope = 0
+		else:
+			slideYeetorNeet = false
+			stoponSlope = 25
+		
+		groundRay.force_raycast_update()
+		#print(groundRay.get_collision_normal())
+		
+		Animate()
 
 func Animate():
 	if inputMotion.x >0:
@@ -86,33 +86,49 @@ func Animate():
 
 
 func _physics_process(delta):
-	
-	if inputMotion.x != 0:
-		velocity.x = lerp(velocity.x, inputMotion.x * MoveSpeed, Acceleration)
-	elif inputMotion.x == 0 and is_on_floor():
-		if groundRay.get_collision_normal() == UP_VECTOR or !slideYeetorNeet:
-			velocity.x = lerp(velocity.x, 0, Deacceleration)
-		elif groundRay.get_collision_normal().x > 0 and slideYeetorNeet:
-			velocity.x = lerp(velocity.x, SlideSpeed, 0.1)
-		elif groundRay.get_collision_normal().x < 0 and slideYeetorNeet:
-			velocity.x = lerp(velocity.x, - SlideSpeed, 0.1)
-	
-	#velocity.x *= slideYeetorNeet
-	
-	if groundRay.get_collision_normal() != UP_VECTOR:
-		move_and_slide_with_snap(velocity*delta, Vector2(0,3), UP_VECTOR, false, 4, rad2deg(90))
-	else:
-		move_and_slide(velocity*delta, UP_VECTOR, stoponSlope)
-	
-	if is_on_floor():
-		currentGlideTime=0.0
-		currentJumpCount=0
-		groundRay.force_raycast_update()
+	if(alive):
+		if inputMotion.x != 0:
+			velocity.x = lerp(velocity.x, inputMotion.x * MoveSpeed, Acceleration)
+		elif inputMotion.x == 0 and is_on_floor():
+			if groundRay.get_collision_normal() == UP_VECTOR or !slideYeetorNeet:
+				velocity.x = lerp(velocity.x, 0, Deacceleration)
+			elif groundRay.get_collision_normal().x > 0 and slideYeetorNeet:
+				velocity.x = lerp(velocity.x, SlideSpeed, 0.1)
+			elif groundRay.get_collision_normal().x < 0 and slideYeetorNeet:
+				velocity.x = lerp(velocity.x, - SlideSpeed, 0.1)
+		
+		#velocity.x *= slideYeetorNeet
+		
+		if groundRay.get_collision_normal() != UP_VECTOR:
+			move_and_slide_with_snap(velocity*delta, Vector2(0,3), UP_VECTOR, false, 4, rad2deg(90))
+		else:
+			move_and_slide(velocity*delta, UP_VECTOR, stoponSlope)
+		
+		if is_on_floor():
+			currentGlideTime=0.0
+			currentJumpCount=0
+			groundRay.force_raycast_update()
 	pass
 
 
+
 func _on_Hitbox_collision(area):
-	print("AU!")
-	#print(groundRay.get_collision_normal())
-	
+	pass # Replace with function body.
+
+var canfinish=false
+var alive =true
+func KILL():
+	alive=false
+	$AnimatedSprite.play("start")
+	$AnimatedSprite.visible=true
+	canfinish = true
+	pass # Replace with function body.
+
+func _on_AnimatedSprite_animation_finished():
+	if canfinish:
+		get_tree().change_scene("res://internal/scenes/Main.tscn")
+		$AnimatedSprite.play("finish")
+		canfinish=false
+		$AnimatedSprite.visible=false
+		alive=true
 	pass # Replace with function body.

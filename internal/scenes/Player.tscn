@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://internal/scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://assets/pingu/run.png" type="Texture" id=2]
 [ext_resource path="res://assets/pingu/slide.png" type="Texture" id=3]
+[ext_resource path="res://internal/scenes/transition.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.06709
@@ -226,7 +227,13 @@ texture = ExtResource( 3 )
 playback_speed = 5.0
 anims/Slide = SubResource( 3 )
 anims/Walk = SubResource( 4 )
+
+[node name="AnimatedSprite" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( -2.38419e-07, 0.240077 )
+z_index = 100
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
 [connection signal="area_entered" from="SlideBox" to="." method="_on_Hitbox_collision"]
 [connection signal="body_entered" from="SlideBox" to="." method="_on_Hitbox_collision"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
