@@ -58,6 +58,7 @@ func _process(delta):
 			velocity.y += gravity
 	
 		if Input.is_action_just_pressed("Move_Jump") and currentJumpCount<jumpCount:
+			SoundControler.play_effect("res://assets/audio/jump.wav")
 			velocity.y = -jumpForce
 			currentJumpCount+=1
 	
@@ -149,6 +150,7 @@ var canfinish=false
 var alive =true
 func KILL():
 	alive=false
+	SoundControler.play_effect("res://assets/audio/death.wav")
 	$AnimatedSprite.play("start")
 	$AnimatedSprite.visible=true
 	canfinish = true
