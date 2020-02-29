@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tiles/ende.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+
+
+
+func _player_hit(area):
+	Global.running=false
+	get_tree().change_scene(\"res://internal/scenes/ClosingScreen.tscn\")
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 123, 37 )
+
+[node name="StaticBody2D" type="Area2D"]
+collision_layer = 64
+collision_mask = 4
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -9, -26 )
+shape = SubResource( 2 )
+
+[node name="ende" type="Sprite" parent="."]
+position = Vector2( -9, -40 )
+texture = ExtResource( 1 )
+[connection signal="area_entered" from="." to="." method="_player_hit"]
+[connection signal="body_entered" from="." to="." method="_player_hit"]
