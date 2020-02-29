@@ -24,7 +24,6 @@ glidingModifier = 0.075
 current = true
 zoom = Vector2( 0.25, 0.25 )
 limit_left = 0
-limit_bottom = 1075
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 drag_margin_left = 0.3
