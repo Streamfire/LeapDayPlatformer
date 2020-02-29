@@ -91,10 +91,12 @@ func _physics_process(delta):
 	elif inputMotion.x == 0 and is_on_floor():
 		velocity.x = lerp(velocity.x, 0, Deacceleration)
 	
+	velocity.x *= slideYeetorNeet
+	
 	if groundRay.get_collision_normal() != UP_VECTOR:
-		move_and_slide_with_snap(velocity*delta*slideYeetorNeet, Vector2(0,3), UP_VECTOR, false, 4, rad2deg(90))
+		move_and_slide_with_snap(velocity*delta, Vector2(0,3), UP_VECTOR, false, 4, rad2deg(90))
 	else:
-		move_and_slide(velocity*delta*slideYeetorNeet, UP_VECTOR, stoponSlope)
+		move_and_slide(velocity*delta, UP_VECTOR, stoponSlope)
 	
 	if is_on_floor():
 		currentGlideTime=0.0

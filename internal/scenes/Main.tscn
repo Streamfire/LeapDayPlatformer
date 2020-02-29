@@ -7,11 +7,11 @@
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 113.782, 897.129 )
+position = Vector2( 66.1037, 842.998 )
 collision/safe_margin = 0.01
 MoveSpeed = 12500.0
 Acceleration = 0.1
-Deacceleration = 0.5
+Deacceleration = 0.2
 jumpForce = 20000.0
 gravity = 2000.0
 
