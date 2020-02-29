@@ -1,22 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://internal/scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://assets/pingu/run.png" type="Texture" id=2]
+[ext_resource path="res://assets/pingu/slide.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.83425
-height = 21.3391
-
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 7.38516
+radius = 7.06709
 height = 19.5761
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 5.84261
+height = 27.3254
+
 [sub_resource type="Animation" id=3]
-resource_name = "Walk"
-length = 2.0
+resource_name = "Slide"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("walk:visible")
+tracks/0/path = NodePath("SlideBox/slide:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -28,7 +28,83 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("walk:frame")
+tracks/1/path = NodePath("SlideBox/SlideShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Flat:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox/walk:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/walk:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/walk:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -39,11 +115,81 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("SlideBox/SlideShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SlideBox/slide:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Flat:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
 gravity = 20.0
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2( -1.10183, 0.240076 )
+shape = SubResource( 1 )
+
+[node name="Flat" type="CollisionShape2D" parent="."]
+position = Vector2( -0.991646, 8.72417 )
+rotation = 1.57079
+shape = SubResource( 1 )
+disabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -0.971937 )
@@ -52,20 +198,35 @@ collision_mask = 80
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( -1.10184, 0.550915 )
-shape = SubResource( 1 )
-
-[node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2( -1.10183, 0.240076 )
 shape = SubResource( 2 )
+
+[node name="walk" type="Sprite" parent="Hitbox"]
+position = Vector2( 0.0809937, 1.19402 )
+texture = ExtResource( 2 )
+hframes = 4
+frame = 3
+
+[node name="SlideBox" type="Area2D" parent="."]
+position = Vector2( 0, -0.971937 )
+collision_layer = 4
+collision_mask = 80
+
+[node name="SlideShape" type="CollisionShape2D" parent="SlideBox"]
+position = Vector2( -0.550929, 11.459 )
+rotation = 1.57079
+shape = SubResource( 2 )
+disabled = true
+
+[node name="slide" type="Sprite" parent="SlideBox"]
+visible = false
+position = Vector2( 0.663994, 12.2457 )
+texture = ExtResource( 3 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
 playback_speed = 5.0
-anims/Walk = SubResource( 3 )
-
-[node name="walk" type="Sprite" parent="."]
-position = Vector2( 0.0809937, 0.222081 )
-texture = ExtResource( 2 )
-hframes = 4
-frame = 1
+anims/Slide = SubResource( 3 )
+anims/Walk = SubResource( 4 )
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
+[connection signal="area_entered" from="SlideBox" to="." method="_on_Hitbox_collision"]
+[connection signal="body_entered" from="SlideBox" to="." method="_on_Hitbox_collision"]

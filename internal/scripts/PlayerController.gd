@@ -20,7 +20,8 @@ var inputMotion = Vector2()
 var velocity = Vector2()
 
 onready var Animator = $PlayerAnimator
-onready var walkSprite = $walk
+onready var walkSprite = $Hitbox/walk
+onready var slideSprite = $SlideBox/slide
 
 var currentGlideTime=0.0
 var currentJumpCount=0
@@ -66,16 +67,22 @@ func _process(delta):
 	Animate()
 
 func Animate():
-	if is_on_floor():
-		if inputMotion.x >0:
-			Animator.play("Walk")
+	if inputMotion.x >0:
 			walkSprite.flip_h = false
-		elif inputMotion.x <0:
-			Animator.play("Walk")
+			slideSprite.flip_h = false
+	elif inputMotion.x <0:
 			walkSprite.flip_h = true
-		else:
-			Animator.seek(0)
-			Animator.stop()
+			slideSprite.flip_h = true
+	
+	if(Input.is_action_pressed("Move_Slide")):
+		Animator.play("Slide")
+	else:
+		Animator.play("Walk")
+	
+	if velocity.x < 0.1 and velocity.x > -0.1:
+		Animator.seek(0)
+		Animator.stop()
+
 
 func _physics_process(delta):
 	
@@ -97,5 +104,6 @@ func _physics_process(delta):
 
 func _on_Hitbox_collision(area):
 	print("AU!")
-	print(groundRay.get_collision_normal())
+	#print(groundRay.get_collision_normal())
+	
 	pass # Replace with function body.
