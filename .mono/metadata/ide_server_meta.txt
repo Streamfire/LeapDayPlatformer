@@ -1,2 +1,2 @@
-﻿55117
-C:\Godot\Godot.exe
+﻿54537
+F:\Spiele\TA\Godot_v3.2-stable_mono_win64\Godot_v3.2-stable_mono_win64\Godot_v3.2-stable_mono_win64.exe
