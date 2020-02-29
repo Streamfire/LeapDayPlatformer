@@ -72,7 +72,7 @@ func _process(delta):
 	
 		groundRay.force_raycast_update()
 		#print(groundRay.get_collision_normal())
-		print(slideYeetorNeet)
+		#print(slideYeetorNeet)
 	
 		Animate()
 
@@ -87,6 +87,17 @@ func Animate():
 	
 	if(Input.is_action_pressed("Move_Slide")):
 		Animator.play("Slide")
+		
+		if groundRay.get_collision_normal().x > 0 :
+			$Flat.rotation = 90.0+45.0
+			$SlideBox.rotation=45
+		elif groundRay.get_collision_normal().x < 0:
+			$Flat.rotation = 90.0-45.0
+			$SlideBox.rotation=-45
+		else:
+			$Flat.rotation = 90.0
+			$SlideBox.rotation=0
+		
 	else:
 		Animator.play("Walk")
 	
@@ -121,8 +132,6 @@ func _physics_process(delta):
 			currentGlideTime=0.0
 			currentJumpCount=0
 			groundRay.force_raycast_update()
-	pass
-
 
 
 func _on_Hitbox_collision(area):

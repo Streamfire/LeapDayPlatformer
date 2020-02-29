@@ -13,5 +13,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Scorelabel.text = str("Score: ",Global.Playernode.velocity.x,"\nTime: ",stepify(Global.Time,0.01))
+	$Scorelabel.text = str("Score: ",Global.Score,"\nTime: ",stepify(Global.Time,0.01))
 	pass

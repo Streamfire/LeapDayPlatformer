@@ -187,8 +187,8 @@ position = Vector2( -1.10183, 0.240076 )
 shape = SubResource( 1 )
 
 [node name="Flat" type="CollisionShape2D" parent="."]
-position = Vector2( -0.991646, 8.72417 )
-rotation = 1.57079
+position = Vector2( 0, 1.87606 )
+rotation = 1.5708
 shape = SubResource( 1 )
 disabled = true
 
@@ -213,14 +213,14 @@ collision_layer = 4
 collision_mask = 80
 
 [node name="SlideShape" type="CollisionShape2D" parent="SlideBox"]
-position = Vector2( -0.550929, 11.459 )
+position = Vector2( 0, 3.91839 )
 rotation = 1.57079
 shape = SubResource( 2 )
 disabled = true
 
 [node name="slide" type="Sprite" parent="SlideBox"]
 visible = false
-position = Vector2( 0.663994, 12.2457 )
+position = Vector2( 0, 6.16705 )
 texture = ExtResource( 3 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
