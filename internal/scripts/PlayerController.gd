@@ -42,8 +42,8 @@ func _process(delta):
 	if is_on_ceiling() or is_on_floor():
 		velocity.y = 0
 	
-	if Input.is_action_pressed("Move_Jump") and currentGlideTime<glidingTime:
-		velocity.y += (gravity/glidingModifier)
+	if Input.is_action_pressed("Move_Jump") and currentGlideTime<glidingTime and velocity.y>0:
+		velocity.y += (gravity*glidingModifier)
 		currentGlideTime+=delta
 	else:
 		velocity.y += gravity
