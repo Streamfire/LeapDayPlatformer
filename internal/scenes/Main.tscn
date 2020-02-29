@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://internal/scenes/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://internal/scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://internal/scenes/UI.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node2D"]
 
@@ -31,3 +32,5 @@ cast_to = Vector2( 0, 25 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1, 0 )
+
+[node name="UI" parent="." instance=ExtResource( 3 )]
