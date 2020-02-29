@@ -40,7 +40,7 @@ func _process(delta):
 		and !Input.is_action_pressed("Move_Slide")) \
 		or (Input.is_action_pressed("Move_Left") and !Input.is_action_pressed("Move_Right") and !is_on_floor()):
 				inputMotion.x= -1
-				
+		
 		if (Input.is_action_pressed("Move_Right") \
 		and !Input.is_action_pressed("Move_Slide")) \
 		or (Input.is_action_pressed("Move_Right") and !Input.is_action_pressed("Move_Left") and !is_on_floor()):
@@ -48,7 +48,7 @@ func _process(delta):
 	
 		if is_on_ceiling() or is_on_floor():
 			velocity.y = 0
-	
+				
 		if Input.is_action_pressed("Move_Jump") and currentGlideTime<glidingTime and velocity.y>0:
 			velocity.y += (gravity*glidingModifier)
 			currentGlideTime+=delta
@@ -109,7 +109,7 @@ func Animate():
 func _physics_process(delta):
 	if(alive):
 		if inputMotion.x != 0:
-			if groundRay.get_collision_normal() == UP_VECTOR:
+			if (!slideYeetorNeet and abs(velocity.x) < MoveSpeed) or !((inputMotion.x < 0) == (velocity.x < 0)):
 				velocity.x = lerp(velocity.x, inputMotion.x * MoveSpeed, Acceleration)
 			elif groundRay.get_collision_normal().x > 0 and slideYeetorNeet:
 				velocity.x = lerp(velocity.x, SlideSpeed, SlideAcceleration)
