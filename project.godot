@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Leap Day Platformer"
-run/main_scene="res://internal/scenes/Main.tscn"
+run/main_scene="res://internal/scenes/OpeningScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
