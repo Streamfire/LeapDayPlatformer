@@ -23,7 +23,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	if Input.is_action_just_pressed(\"Move_Jump\"):
+		get_tree().change_scene(\"res://internal/scenes/OpeningScreen.tscn\")
 	pass
 "
 
@@ -83,12 +84,10 @@ texture = ExtResource( 3 )
 
 [node name="ebene4" type="Sprite" parent="ebene1"]
 position = Vector2( 2743.49, -286.097 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
 [node name="ebene3" type="Sprite" parent="ebene1"]
 position = Vector2( 3168.53, -88.2432 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 
 [node name="ebene2" type="Sprite" parent="ebene1"]
