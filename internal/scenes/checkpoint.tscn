@@ -12,6 +12,7 @@ func _player_hit(area):
 	if Global.Checkpoint!=self.global_position:
 		SoundControler.play_effect(\"res://assets/audio/checkpoint.wav\")
 		Global.Checkpoint=self.global_position
+		Global.CheckpointTime=Global.Time
 	pass # Replace with function body.
 "
 

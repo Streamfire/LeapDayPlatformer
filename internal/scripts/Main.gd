@@ -13,6 +13,7 @@ func _ready():
 	
 	if(Global.Checkpoint!= Vector2()):
 		$Player.global_position=Vector2(Global.Checkpoint.x,Global.Checkpoint.y-20)
+		Global.Time=Global.CheckpointTime
 #		$Player/Camera2D.position=$Player.position
 #		$Player/RayCast2D.position=$Player.position
 	pass # Replace with function body.
