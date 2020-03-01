@@ -9,7 +9,9 @@ script/source = "extends Area2D
 
 
 func _player_hit(area):
-	Global.Checkpoint=self.global_position
+	if Global.Checkpoint!=self.global_position:
+		SoundControler.play_effect(\"res://assets/audio/checkpoint.wav\")
+		Global.Checkpoint=self.global_position
 	pass # Replace with function body.
 "
 
