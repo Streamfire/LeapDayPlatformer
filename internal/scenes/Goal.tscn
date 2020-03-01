@@ -19,7 +19,7 @@ func _exit_tree():
 "
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 123, 37 )
+extents = Vector2( 127, 13 )
 
 [node name="StaticBody2D" type="Area2D"]
 collision_layer = 64
@@ -27,7 +27,7 @@ collision_mask = 4
 script = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -9, -26 )
+position = Vector2( -7, -2 )
 shape = SubResource( 2 )
 
 [node name="ende" type="Sprite" parent="."]
