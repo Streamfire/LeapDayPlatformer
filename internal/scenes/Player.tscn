@@ -14,7 +14,7 @@ height = 19.5761
 radius = 5.84261
 height = 27.3254
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Glide"
 loop = true
 tracks/0/type = "value"
@@ -102,8 +102,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Slide"
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SlideBox/slide:visible")
@@ -190,7 +189,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -298,12 +297,12 @@ gravity = 20.0
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2( -1.10183, 0.240076 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="Flat" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.87606 )
 rotation = 1.5708
 shape = SubResource( 1 )
-disabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -0.971937 )
@@ -313,8 +312,10 @@ collision_mask = 80
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( -1.10184, 0.550915 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="walk" type="Sprite" parent="Hitbox"]
+visible = false
 position = Vector2( 0.0809937, 1.19402 )
 texture = ExtResource( 2 )
 hframes = 4
@@ -328,7 +329,6 @@ collision_mask = 80
 position = Vector2( 0, 3.91839 )
 rotation = 1.57079
 shape = SubResource( 2 )
-disabled = true
 
 [node name="slide" type="Sprite" parent="SlideBox"]
 visible = false
@@ -336,19 +336,19 @@ position = Vector2( 0, 6.16705 )
 texture = ExtResource( 3 )
 
 [node name="glide" type="Sprite" parent="SlideBox"]
-visible = false
 position = Vector2( -0.109333, -4.59966 )
 texture = ExtResource( 5 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
 playback_speed = 5.0
-anims/Glide = SubResource( 5 )
-anims/Slide = SubResource( 3 )
-anims/Walk = SubResource( 4 )
+anims/Glide = SubResource( 3 )
+anims/Slide = SubResource( 4 )
+anims/Walk = SubResource( 5 )
 
 [node name="AnimatedSprite" parent="." instance=ExtResource( 4 )]
 visible = false
-position = Vector2( -2.38419e-07, 0.240077 )
+position = Vector2( 0, -0.971985 )
+scale = Vector2( 1.23894, 1.18019 )
 z_index = 100
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_collision"]
