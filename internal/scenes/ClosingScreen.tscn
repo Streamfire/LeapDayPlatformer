@@ -1,8 +1,44 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Klill-Light.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Control
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Scorelabel.text = str(\"Score: \",Global.Score,\"\\nTime: \",stepify(Global.Time,0.01))
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	
+	pass
+"
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 1 )
 
 [node name="ClosingScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scorelabel2" type="Label" parent="."]
+margin_left = 764.046
+margin_top = 452.839
+margin_right = 1064.05
+margin_bottom = 619.839
+custom_fonts/font = SubResource( 1 )
+text = "Score: 0
+Time: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
