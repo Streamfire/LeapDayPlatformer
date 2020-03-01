@@ -27,6 +27,7 @@ var velocity = Vector2()
 onready var Animator = $PlayerAnimator
 onready var walkSprite = $Hitbox/walk
 onready var slideSprite = $SlideBox/slide
+onready var glideSprite = $SlideBox/glide
 
 var currentGlideTime=0.0
 var currentJumpCount=0
@@ -56,6 +57,7 @@ func _process(delta):
 			currentGlideTime+=delta
 		else:
 			velocity.y += gravity
+			
 	
 		if Input.is_action_just_pressed("Move_Jump") and currentJumpCount<jumpCount:
 			SoundControler.play_effect("res://assets/audio/jump.wav")
@@ -88,11 +90,15 @@ func Animate():
 	if inputMotion.x >0:
 			walkSprite.flip_h = false
 			slideSprite.flip_h = false
+			glideSprite.flip_h=false
 	elif inputMotion.x <0:
 			walkSprite.flip_h = true
 			slideSprite.flip_h = true
+			glideSprite.flip_h=true
 	
-	if(Input.is_action_pressed("Move_Slide")):
+	if Input.is_action_pressed("Move_Jump") and currentGlideTime<glidingTime and velocity.y>0:
+		$PlayerAnimator.play("Glide")
+	elif(Input.is_action_pressed("Move_Slide")):
 		Animator.play("Slide")
 		
 		if groundRay.get_collision_normal().x > 0 :
