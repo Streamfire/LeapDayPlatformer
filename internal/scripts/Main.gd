@@ -10,6 +10,7 @@ extends Node2D
 func _ready():
 	Global.running=true
 	Global.Time=0.0
+	Global.Score=0
 	
 	if(Global.Checkpoint!= Vector2()):
 		$Player.global_position=Vector2(Global.Checkpoint.x,Global.Checkpoint.y-20)

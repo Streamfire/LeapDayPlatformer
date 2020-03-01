@@ -10,8 +10,12 @@ script/source = "extends Area2D
 
 func _player_hit(area):
 	Global.running=false
+	SoundControler.play_effect(\"res://assets/audio/clear.wav\")
 	get_tree().change_scene(\"res://internal/scenes/ClosingScreen.tscn\")
 	pass # Replace with function body.
+
+func _exit_tree():
+	SoundControler.stop_All()
 "
 
 [sub_resource type="RectangleShape2D" id=2]

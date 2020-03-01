@@ -46,3 +46,8 @@ func music_finished() -> void:
 func effect_finished() -> void:
 	#AudioServer.set_bus_mute(1, false)
 	pass
+
+func stop_All():
+	music.stop()
+	for i in range(0,EffectLayers):
+		effect[i].stop()

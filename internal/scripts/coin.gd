@@ -18,5 +18,6 @@ func _ready():
 
 func _on_StaticBody2D_area_entered(area):
 	Global.Score += 1
+	SoundControler.play_effect("res://assets/audio/jump-glide.wav")
 	self.queue_free()
 	pass # Replace with function body.

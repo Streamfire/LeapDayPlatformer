@@ -17,7 +17,7 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Scorelabel.text = str(\"Score: \",Global.Score,\"\\nTime: \",stepify(Global.Time,0.01))
+	$Scorelabel2.text = str(\"Score: \",Global.Score,\"\\nTime: \",stepify(Global.Time,0.01))
 	pass # Replace with function body.
 
 
@@ -83,31 +83,31 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 
 [node name="ebene4" type="Sprite" parent="ebene1"]
-position = Vector2( 2743.49, -286.097 )
+position = Vector2( 2650.51, -286.097 )
 texture = ExtResource( 2 )
 
 [node name="ebene3" type="Sprite" parent="ebene1"]
-position = Vector2( 3168.53, -88.2432 )
+position = Vector2( 2889.58, -274.209 )
 texture = ExtResource( 4 )
 
 [node name="ebene2" type="Sprite" parent="ebene1"]
-position = Vector2( 2426.69, -13.3384 )
+position = Vector2( 2538.27, -208.603 )
 texture = ExtResource( 5 )
 
 [node name="ebene1" type="Sprite" parent="ebene1"]
-position = Vector2( 2441.05, -112.569 )
+position = Vector2( 1139.29, -249.597 )
 texture = ExtResource( 3 )
 
 [node name="ebene1_pixel" type="Sprite" parent="ebene1/ebene1"]
-position = Vector2( -607.235, 1390.53 )
-scale = Vector2( 3416.19, 335.605 )
+position = Vector2( 846.236, 1390.53 )
+scale = Vector2( 4869.66, 335.605 )
 texture = ExtResource( 7 )
 
 [node name="Scorelabel2" type="Label" parent="."]
-margin_left = 1502.69
-margin_top = 619.272
-margin_right = 1802.7
-margin_bottom = 786.272
+margin_left = 1466.43
+margin_top = 870.326
+margin_right = 1766.44
+margin_bottom = 1037.33
 custom_fonts/font = SubResource( 2 )
 text = "Score: 0
 Time: "
@@ -116,12 +116,12 @@ __meta__ = {
 }
 
 [node name="creditlabel" type="Label" parent="."]
-margin_left = 10.5662
-margin_top = 1030.71
-margin_right = 1221.57
-margin_bottom = 1197.71
+margin_left = 11.3013
+margin_top = 1021.15
+margin_right = 1222.31
+margin_bottom = 1188.15
 custom_fonts/font = SubResource( 3 )
-text = "a Game made by: Ohimi,nKatsuhira,Streamfire, Rui and Happy_Death"
+text = "a Game made by:  Ohimi, nKatsuhira, Streamfire, Rui and Happy_Death"
 __meta__ = {
 "_edit_use_anchors_": false
 }
