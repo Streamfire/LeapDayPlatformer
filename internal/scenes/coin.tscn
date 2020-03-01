@@ -35,14 +35,13 @@ scale = Vector2( 0.996099, 1.00351 )
 texture = ExtResource( 1 )
 centered = false
 hframes = 120
-frame = 51
+frame = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.0478671, 0.0357262 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 0.1
 anims/Idle = SubResource( 2 )
 [connection signal="area_entered" from="." to="." method="_on_StaticBody2D_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_StaticBody2D_area_entered"]
