@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://internal/scenes/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://internal/scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://internal/scenes/UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://internal/scripts/Main.gd" type="Script" id=4]
-[ext_resource path="res://internal/scenes/cactus.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 4 )
@@ -13,13 +12,15 @@ script = ExtResource( 4 )
 position = Vector2( 78.2362, 556.67 )
 collision/safe_margin = 0.01
 MoveSpeed = 12500.0
-SlideSpeed = 57500.0
-SlideDeacceleration = 0.006
+SlideSpeed = 100000.0
+SlideAcceleration = 0.01
+SlideDeacceleration = 0.06
 Acceleration = 0.65
 Deacceleration = 0.3
 jumpForce = 27500.0
 gravity = 2100.0
-glidingModifier = 0.075
+glidingTime = 0.6
+glidingModifier = 0.12
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -39,6 +40,3 @@ cast_to = Vector2( 0, 30 )
 position = Vector2( -1, 0 )
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
-
-[node name="StaticBody2D" parent="." instance=ExtResource( 5 )]
-position = Vector2( 665.659, 687.935 )
